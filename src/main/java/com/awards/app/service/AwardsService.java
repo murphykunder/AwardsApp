@@ -16,21 +16,26 @@ public class AwardsService {
 
 	private static List<Transaction> transaction;
 	static {
-		transaction = Arrays.asList(
-
-				new Transaction("Mini", 80, LocalDate.now().minusMonths(4).minusDays(1)),
-				new Transaction("Mickey", 250, LocalDate.now().minusMonths(4).minusDays(2)),
-				new Transaction("Mini", 120, LocalDate.now().minusMonths(4).minusDays(3)),
-
-				new Transaction("Mickey", 180, LocalDate.now().minusMonths(3).minusDays(4)),
-				new Transaction("Donald", 100, LocalDate.now().minusMonths(3).minusDays(3)),
-				new Transaction("Mickey", 50, LocalDate.now().minusMonths(3).minusDays(1)),
-				new Transaction("Donald", 500, LocalDate.now().minusMonths(3).minusDays(2)),
-
-				new Transaction("Mini", 140, LocalDate.now().minusMonths(2).minusDays(4)),
-				new Transaction("Tom", 80, LocalDate.now().minusMonths(2).minusDays(3)),
-				new Transaction("Donald", 140, LocalDate.now().minusMonths(2).minusDays(2)),
-				new Transaction("Tom", 30, LocalDate.now().minusMonths(2).minusDays(1))
+		transaction = Arrays.asList(new Transaction("Levin", 26, LocalDate.parse("2023-05-04"), 0),
+				new Transaction("Levin", 105, LocalDate.parse("2023-05-02"), 0),
+				new Transaction("Lois", 117, LocalDate.parse("2023-05-12"), 0),
+				new Transaction("Levin", 179, LocalDate.parse("2023-04-05"), 0),
+				new Transaction("Jackson", 33, LocalDate.parse("2023-05-19"), 0),
+				new Transaction("Murphy", 123, LocalDate.parse("2023-04-20"), 0),
+				new Transaction("Haley", 84, LocalDate.parse("2023-05-04"), 0),
+				new Transaction("Jackson", 150, LocalDate.parse("2023-03-22"), 0),
+				new Transaction("Murphy", 85, LocalDate.parse("2023-03-08"), 0),
+				new Transaction("Murphy", 172, LocalDate.parse("2023-03-28"), 0),
+				new Transaction("Reece", 63, LocalDate.parse("2023-05-25"), 0),
+				new Transaction("Murphy", 111, LocalDate.parse("2023-04-06"), 0),
+				new Transaction("Murphy", 159, LocalDate.parse("2023-04-13"), 0),
+				new Transaction("Levin", 84, LocalDate.parse("2023-04-11"), 0),
+				new Transaction("Jackson", 112, LocalDate.parse("2023-03-29"), 0),
+				new Transaction("Levin", 167, LocalDate.parse("2023-05-20"), 0),
+				new Transaction("Jackson", 157, LocalDate.parse("2023-04-08"), 0),
+				new Transaction("Jackson", 127, LocalDate.parse("2023-04-09"), 0),
+				new Transaction("Jackson", 48, LocalDate.parse("2023-03-09"), 0),
+				new Transaction("Jackson", 74, LocalDate.parse("2023-03-15"), 0)
 
 		);
 	}
@@ -52,9 +57,11 @@ public class AwardsService {
 	public List<Transaction> getRewardByMonth(int monthValue) {
 		return transaction.stream().filter((t) -> t.getTransactionMonth() == monthValue).collect(Collectors.toList());
 	}
-	
+
 	public List<Transaction> getRewardForCustomerForMonth(String customerName, int monthValue) {
-		return transaction.stream().filter((t) -> t.getTransactionMonth() == monthValue && t.getCustomerName().equals(customerName)).collect(Collectors.toList());
+		return transaction.stream()
+				.filter((t) -> t.getTransactionMonth() == monthValue && t.getCustomerName().equals(customerName))
+				.collect(Collectors.toList());
 
 	}
 
@@ -78,7 +85,5 @@ public class AwardsService {
 	public int calculateTotalRewardPoints() {
 		return transaction.stream().mapToInt((t) -> t.getRewardPoints()).sum();
 	}
-
-
 
 }

@@ -33,8 +33,7 @@ public class GlobalException extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<Object> handleAnyException(NoResourceFoundException ex, HttpHeaders headers,
-			HttpStatusCode status, WebRequest request) {
+	public ResponseEntity<Object> handleAnyException(Exception ex, WebRequest request) {
 		String errorMsg = ex.getMessage();
 		ErrorDetails errorDetails = new ErrorDetails(errorMsg, LocalDateTime.now());
 		return new ResponseEntity<Object>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);

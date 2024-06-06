@@ -10,6 +10,10 @@ public class Transaction {
 	private int amount;
 	private LocalDate transactionDate;
 	private int rewardPoints;
+	
+	public Transaction() {
+	}
+
 
 	public Transaction(String customerName, int amount, LocalDate transactionDate, int rewardPoints) {
 		super();
